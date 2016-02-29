@@ -31,13 +31,53 @@ echo.
 echo 1) 9.2.0-20E
 echo 2) 9.2.0-20U
 echo 3) 9.2.0-20J
+echo ============
+echo 4) 9.0.0-20E
+echo 5) 9.0.0-20U
+echo 6) 9.0.0-20J
 echo.
 set /p firmware=
 if %firmware%==1 goto 9.2.0-20E
 if %firmware%==2 goto 9.2.0-20U
 if %firmware%==3 goto 9.2.0-20J
+if %firmware%==4 goto 9.0.0-20E
+if %firmware%==5 goto 9.0.0-20U
+if %firmware%==6 goto 9.0.0-20J
 cls
 goto nxt
+
+:9.0.0-20E
+if not exist 9.0.0-20E-%model%.md5 goto error1
+if not exist md5sum.exe goto error2
+md5sum -c 9.0.0-20E-%model%.md5
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
+if %errorlevel%==1 md5sum -c 9.0.0-20E-%model%.md5 >error3-%datetime%.log
+if %errorlevel%==1 goto error3
+echo Your CIA pack is good to go! :)
+pause >nul
+goto quit
+
+:9.0.0-20U
+if not exist 9.0.0-20U-%model%.md5 goto error1
+if not exist md5sum.exe goto error2
+md5sum -c 9.0.0-20U-%model%.md5
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
+if %errorlevel%==1 md5sum -c 9.0.0-20U-%model%.md5 >error3-%datetime%.log
+if %errorlevel%==1 goto error3
+echo Your CIA pack is good to go! :)
+pause >nul
+goto quit
+
+:9.0.0-20J
+if not exist 9.0.0-20J-%model%.md5 goto error1
+if not exist md5sum.exe goto error2
+md5sum -c 9.0.0-20J-%model%.md5
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
+if %errorlevel%==1 md5sum -c 9.0.0-20J-%model%.md5 >error3-%datetime%.log
+if %errorlevel%==1 goto error3
+echo Your CIA pack is good to go! :)
+pause >nul
+goto quit
 
 :9.2.0-20E
 if not exist 9.2.0-20E-%model%.md5 goto error1
