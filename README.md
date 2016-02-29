@@ -1,4 +1,4 @@
-Put this tool in a folder, run the script and follow its instructions. 
+﻿Put this tool in a folder, run the script and follow its instructions. 
 It'll tell you if the CIA files are good to be used for you to update or not.
 
 
