@@ -5,9 +5,9 @@
 :: http://youtube.com/gnmpolicemata
 
 ::Version
-set major = 1
-set minor = 0
-set rev = 0
+set major=1
+set minor=0
+set rev=1
 
 ::title set
 title CIA Updater Pack Checker Script v%major%.%minor%.%rev% (super-duper-octo-brocolli)
@@ -24,8 +24,8 @@ if %console%==2 goto nxt
 cls
 goto main
 :nxt
-if %console%==1 set model = o3DS
-if %console%==2 set model = n3DS
+if %console%==1 set model=o3DS
+if %console%==2 set model=n3DS
 echo What is the version of the CIA Pack?
 echo.
 echo 1) 9.2.0-20E
@@ -43,7 +43,8 @@ goto nxt
 if not exist 9.2.0-20E-%model%.md5 goto error1
 if not exist md5sum.exe goto error2
 md5sum -c 9.2.0-20E-%model%.md5
-if %errorlevel%==1 md5sum -c 9.2.0-20E-%model%.md5 >error3-%date%-%time%.log
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
+if %errorlevel%==1 md5sum -c 9.2.0-20E-%model%.md5 >error3-%datetime%.log
 if %errorlevel%==1 goto error3
 echo Your CIA pack is good to go! :)
 pause >nul
@@ -53,7 +54,8 @@ goto quit
 if not exist 9.2.0-20U-%model%.md5 goto error1
 if not exist md5sum.exe goto error2
 md5sum -c 9.2.0-20U-%model%.md5
-if %errorlevel%==1 md5sum -c 9.2.0-20U-%model%.md5 >error3-%date%-%time%.log
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
+if %errorlevel%==1 md5sum -c 9.2.0-20U-%model%.md5 >error3-%datetime%.log
 if %errorlevel%==1 goto error3
 echo Your CIA pack is good to go! :)
 pause >nul
@@ -63,7 +65,8 @@ goto quit
 if not exist 9.2.0-20J-%model%.md5 goto error1
 if not exist md5sum.exe goto error2
 md5sum -c 9.2.0-20J-%model%.md5
-if %errorlevel%==1 md5sum -c 9.2.0-20J-%model%.md5 >error3-%date%-%time%.log
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
+if %errorlevel%==1 md5sum -c 9.2.0-20J-%model%.md5 >error3-%datetime%.log
 if %errorlevel%==1 goto error3
 echo Your CIA pack is good to go! :)
 pause >nul
@@ -74,6 +77,7 @@ cls
 echo Error 1: Missing *.MD5 file
 echo ===========================
 echo The script can't continue as a file is missing. Please make sure you have all the files related to this script on this folder, and make sure this script is compatible with the target system version.
+echo Model: %model%
 set ERRORLEVEL = 1
 pause >nul
 exit
