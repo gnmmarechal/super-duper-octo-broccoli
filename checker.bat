@@ -9,3 +9,94 @@ set major = 1
 set minor = 0
 set rev = 0
 
+::title set
+title CIA Updater Pack Checker Script v%major%.%minor%.%rev% (super-duper-octo-brocolli)
+
+:main
+echo What is your console model?
+echo.
+echo 1) Old 3DS / 2DS / 3DS XL
+echo 2) New 3DS / New 3DS XL
+echo.
+set /p console=
+if %console%==1 goto nxt
+if %console%==2 goto nxt
+cls
+goto main
+:nxt
+if %console%==1 set model = o3DS
+if %console%==2 set model = n3DS
+echo What is the version of the CIA Pack?
+echo.
+echo 1) 9.2.0-20E
+echo 2) 9.2.0-20U
+echo 3) 9.2.0-20J
+echo.
+set /p firmware=
+if %firmware%==1 goto 9.2.0-20E
+if %firmware%==2 goto 9.2.0-20U
+if %firmware%==3 goto 9.2.0-20J
+cls
+goto nxt
+
+:9.2.0-20E
+if not exist 9.2.0-20E-%model%.md5 goto error1
+if not exist md5sum.exe goto error2
+md5sum -c 9.2.0-20E-%model%.md5
+if %errorlevel%==1 md5sum -c 9.2.0-20E-%model%.md5 >error3-%date%-%time%.log
+if %errorlevel%==1 goto error3
+echo Your CIA pack is good to go! :)
+pause >nul
+goto quit
+
+:9.2.0-20U
+if not exist 9.2.0-20U-%model%.md5 goto error1
+if not exist md5sum.exe goto error2
+md5sum -c 9.2.0-20U-%model%.md5
+if %errorlevel%==1 md5sum -c 9.2.0-20U-%model%.md5 >error3-%date%-%time%.log
+if %errorlevel%==1 goto error3
+echo Your CIA pack is good to go! :)
+pause >nul
+goto quit
+
+:9.2.0-20J
+if not exist 9.2.0-20J-%model%.md5 goto error1
+if not exist md5sum.exe goto error2
+md5sum -c 9.2.0-20J-%model%.md5
+if %errorlevel%==1 md5sum -c 9.2.0-20J-%model%.md5 >error3-%date%-%time%.log
+if %errorlevel%==1 goto error3
+echo Your CIA pack is good to go! :)
+pause >nul
+goto quit
+
+:error1
+cls
+echo Error 1: Missing *.MD5 file
+echo ===========================
+echo The script can't continue as a file is missing. Please make sure you have all the files related to this script on this folder, and make sure this script is compatible with the target system version.
+set ERRORLEVEL = 1
+pause >nul
+exit
+
+:error2
+cls
+echo Error 1: Missing MD5SUM file
+echo ===========================
+echo The script can't continue as md5sum.exe is missing. Please place it in the same directory as this script.
+set ERRORLEVEL = 2
+pause >nul
+exit
+
+:error3
+cls
+echo Error 3: Corrupt/Incomplete CIA Pack
+echo ===========================
+echo Your CIA pack is not good! Please refer to the printed error log.
+set ERRORLEVEL = 3
+pause >nul
+exit
+
+:quit
+set ERRORLEVEL = 0
+exit
+
