@@ -7,7 +7,7 @@
 ::Version
 set major=1
 set minor=0
-set rev=1
+set rev=2
 
 ::title set
 title CIA Updater Pack Checker Script v%major%.%minor%.%rev% (super-duper-octo-brocolli)
@@ -35,6 +35,10 @@ echo ============
 echo 4) 9.0.0-20E
 echo 5) 9.0.0-20U
 echo 6) 9.0.0-20J
+echo ============
+echo 7) 2.1.0-4E
+echo 8) 2.1.0-4U
+echo 9) 2.1.0-4J
 echo.
 set /p firmware=
 if %firmware%==1 goto 9.2.0-20E
@@ -43,8 +47,44 @@ if %firmware%==3 goto 9.2.0-20J
 if %firmware%==4 goto 9.0.0-20E
 if %firmware%==5 goto 9.0.0-20U
 if %firmware%==6 goto 9.0.0-20J
+if %firmware%==7 goto 2.1.0-4E
+if %firmware%==8 goto 2.1.0-4U
+if %firmware%==9 goto 2.1.0-4J
 cls
 goto nxt
+
+:2.1.0-4E
+if not exist 2.1.0-4E-%model%.md5 goto error1
+if not exist md5sum.exe goto error2
+md5sum -c 2.1.0-4E-%model%.md5
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
+if %errorlevel%==1 md5sum -c 2.1.0-4E-%model%.md5 >error3-%datetime%.log
+if %errorlevel%==1 goto error3
+echo Your CIA pack is good to go! :)
+pause >nul
+goto quit
+
+:2.1.0-4U
+if not exist 2.1.0-4U-%model%.md5 goto error1
+if not exist md5sum.exe goto error2
+md5sum -c 2.1.0-4U-%model%.md5
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
+if %errorlevel%==1 md5sum -c 2.1.0-4U-%model%.md5 >error3-%datetime%.log
+if %errorlevel%==1 goto error3
+echo Your CIA pack is good to go! :)
+pause >nul
+goto quit
+
+:2.1.0-4J
+if not exist 2.1.0-4J-%model%.md5 goto error1
+if not exist md5sum.exe goto error2
+md5sum -c 2.1.0-4J-%model%.md5
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /format:list') do set datetime=%%I
+if %errorlevel%==1 md5sum -c 2.1.0-4J-%model%.md5 >error3-%datetime%.log
+if %errorlevel%==1 goto error3
+echo Your CIA pack is good to go! :)
+pause >nul
+goto quit
 
 :9.0.0-20E
 if not exist 9.0.0-20E-%model%.md5 goto error1
