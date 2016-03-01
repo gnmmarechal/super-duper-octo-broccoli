@@ -6,7 +6,7 @@ I didn't make MD5SUM. I only made the script and used MD5SUM to generate the *.m
 
 Currently supported CIA packs:
 
-N3DS:
+**N3DS:**
 
 9.2.0-20E
 
@@ -21,7 +21,7 @@ N3DS:
 9.0.0-20J
 
 
-O3DS/2DS:
+**O3DS/2DS:**
 
 9.2.0-20E
 
