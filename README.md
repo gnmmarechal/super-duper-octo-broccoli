@@ -1,6 +1,8 @@
 ﻿Put this tool in a folder, run the script and follow its instructions. 
 It'll tell you if the CIA files are good to be used for you to update or not.
 
+I didn't make MD5SUM. I only made the script and used MD5SUM to generate the *.md5 files.
+
 
 Currently supported CIA packs:
 
