@@ -7,20 +7,20 @@
 ::Version
 set major=1
 set minor=1
-set rev=2
+set rev=3
 
 ::title set
 title CIA Updater Pack Checker Script v%major%.%minor%.%rev% (super-duper-octo-brocolli)
 
 
 :main
-echo REMEMBER TO DELETE ALL OF THE SCRIPT'S FILES! Use the *.bat script that will appear on the root of your SD Card.
 echo What is your console model?
 echo.
 echo 1) Old 3DS / 2DS / 3DS XL
 echo 2) New 3DS / New 3DS XL
 echo.
 set /p console=
+cls
 if %console%==1 goto nxt
 if %console%==2 goto nxt
 cls
